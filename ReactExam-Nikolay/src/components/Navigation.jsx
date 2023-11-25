@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Navigation() {
   return (
@@ -41,11 +41,12 @@ function Navigation() {
                 data-in="fadeInDown"
                 data-out="fadeOutUp"
               >
-                <li className=" scroll active">
-                  <Link to="/">
-                    <a>home</a>
-                  </Link>
+                <li className="scroll">
+                  <a as={Link} to="/">
+                    home
+                  </a>
                 </li>
+
                 <li className="scroll">
                   <a href="#service">service</a>
                 </li>
