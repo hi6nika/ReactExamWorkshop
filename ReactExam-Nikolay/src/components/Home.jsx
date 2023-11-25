@@ -1,11 +1,10 @@
 import Navigation from "./Navigation";
 
-import SearchBox from "./SearchBox"
+import SearchBox from "./SearchBox";
 
 function Home() {
   return (
     <section id="home" className="welcome-hero">
- 
       <div className="container">
         <div className="welcome-hero-txt">
           <h2> Sell or get your next car!</h2>
@@ -14,7 +13,7 @@ function Home() {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-     <SearchBox/>
+            <SearchBox />
           </div>
         </div>
       </div>

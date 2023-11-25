@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Navigation() {
   return (
     <div className="top-area">
@@ -19,10 +21,13 @@ function Navigation() {
               >
                 <i className="fa fa-bars" />
               </button>
-              <a className="navbar-brand" href="index.html">
-                carvilla
-                <span />
-              </a>
+
+              <Link to="/">
+                <a className="navbar-brand">
+                  carvilla
+                  <span />
+                </a>
+              </Link>
             </div>
             {/*/.navbar-header*/}
             {/* End Header Navigation */}
@@ -37,7 +42,9 @@ function Navigation() {
                 data-out="fadeOutUp"
               >
                 <li className=" scroll active">
-                  <a href="#home">home</a>
+                  <Link to="/">
+                    <a>home</a>
+                  </Link>
                 </li>
                 <li className="scroll">
                   <a href="#service">service</a>
