@@ -1,13 +1,6 @@
-const express = require("express");
+const expressStart = require("./config/expressConfig");
+const dbConnect = require("./config/dbConnect");
 
-const app = express();
+dbConnect();
 
-const { PORT } = require("./constants");
-
-const router = require("./router");
-
-app.use(router);
-
-app.listen(PORT, () => {
-  console.log(`Server is live on http://localhost:${PORT}/`);
-});
+expressStart();

@@ -6,4 +6,5 @@ async function connectDB() {
 
   console.log(`Connected to ${DATA_BASE_NAME} database!`);
 }
-export default connectDB;
+
+module.exports = connectDB;

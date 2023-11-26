@@ -1,8 +1,9 @@
 const router = require("express").Router();
 
-// router.use(homeController);
+const UserController = require("./controllers/userController")
+ 
 
-// router.use("/users", UserController);
+ router.use("/users", UserController);
 
 // router.get("*", (req, res) => res.redirect("/404"));
 
