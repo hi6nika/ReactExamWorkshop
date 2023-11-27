@@ -42,17 +42,35 @@ function Navigation() {
                 data-out="fadeOutUp"
               >
                 <li className="scroll">
-                  <a as={Link} to="/">
-                    home
-                  </a>
+                  <Link to="/">
+                    <a>home</a>
+                  </Link>
                 </li>
 
                 <li className="scroll">
-                  <a href="#service">service</a>
+                  <Link>
+                    <a href="#service">service</a>
+                  </Link>
                 </li>
+
                 <li className="scroll">
-                  <a href="#featured-cars">featured cars</a>
+                  <Link to="/featured">
+                    <a>featured cars</a>
+                  </Link>
                 </li>
+
+                <li className="scroll">
+                  <Link to="/register">
+                    <a>register</a>
+                  </Link>
+                </li>
+
+                <li className="scroll">
+                  <Link to="/login">
+                    <a>Login</a>
+                  </Link>
+                </li>
+
                 <li className="scroll">
                   <a href="#new-cars">new cars</a>
                 </li>
