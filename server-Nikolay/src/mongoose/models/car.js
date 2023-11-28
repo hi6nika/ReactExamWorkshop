@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const carSchema = new mongoose.Schema({
+  imgUrl: {
+    type: String,
+    required: [true, "Image is required!"],
+  },
   model: {
     type: String,
     required: [true, "Model is required!"],
@@ -9,13 +13,21 @@ const carSchema = new mongoose.Schema({
     type: String,
     required: [true, "Make is required!"],
   },
-  type: {
+  condition: {
     type: String,
-    required: [true, "Type is required!"],
+    required: [true, "Condition is required!"],
   },
-  fuel: {
+  year: {
     type: String,
-    required: [true, "Fuel is required!"],
+    required: [true, "Year is required!"],
+  },
+  body: {
+    type: String,
+    required: [true, "Body is required!"],
+  },
+  price: {
+    type: Number,
+    required: [true, "Price is required!"],
   },
 });
 

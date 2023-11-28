@@ -48,14 +48,14 @@ function Navigation() {
                 </li>
 
                 <li className="scroll">
-                  <Link>
-                    <a href="#service">service</a>
+                  <Link to="/featured">
+                    <a>featured cars</a>
                   </Link>
                 </li>
 
                 <li className="scroll">
-                  <Link to="/featured">
-                    <a>featured cars</a>
+                  <Link to="/addCar">
+                    <a>add car</a>
                   </Link>
                 </li>
 
