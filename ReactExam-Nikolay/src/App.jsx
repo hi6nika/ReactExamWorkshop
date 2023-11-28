@@ -2,11 +2,12 @@ import "./assets/css/style.css";
 import FeaturedCars from "./components/FeaturedCars";
 
 import Home from "./components/Home";
-import Register from "./components/Register"
+import Register from "./components/Register";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import AddCar from "./components/AddCar";
+import DetailsPage from "./components/DetailsPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/addCar" element={<AddCar />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/details/:id" element={<DetailsPage />} />
       </Routes>
     </>
   );

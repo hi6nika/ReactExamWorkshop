@@ -1,11 +1,4 @@
-
-function detailsHandler(e){
-  e.preventDefault()
-  console.log("details")
-}
-
-
-
+import { Link, NavLink } from "react-router-dom";
 
 function FeaturedCarCard({
   _id,
@@ -36,15 +29,19 @@ function FeaturedCarCard({
           </div>
           <div className="featured-cars-txt">
             <h2>
-              <a href="#">{make}  {model}</a>
+              <a href="#">
+                {make} {model}
+              </a>
             </h2>
             <h3>${price}</h3>
             <p>
-              Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+              Neque porro quiam est, qui dolorem ipsum quia dolor sit amet,
               consectetur, adipisci velit, sed quia non.
             </p>
           </div>
-          <button onClick={detailsHandler}>Details</button>
+          <Link to={`/details/${_id}`}>
+            <a>Details</a>
+          </Link>
         </div>
       </div>
     </>

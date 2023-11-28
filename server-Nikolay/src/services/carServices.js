@@ -14,3 +14,9 @@ exports.getAllCars = async (data) => {
 
   return car
 };
+
+exports.getCar = async (id) => {
+  const car = await Car.findById(id).lean()
+
+  return car
+};

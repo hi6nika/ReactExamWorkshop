@@ -21,4 +21,15 @@ CarController.get("/catalog", async (req, res) => {
   }
 });
 
+CarController.get("/details/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const carData = await carServices.getCar(id);
+    res.status(200).json(carData);
+  } catch (error) {
+    res.status(400).send(toErrText(error));
+  }
+});
+
 module.exports = CarController;
