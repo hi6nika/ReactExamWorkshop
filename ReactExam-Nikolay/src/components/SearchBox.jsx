@@ -114,7 +114,7 @@ function SearchBox() {
           <div className="single-model-search text-center">
             <button
               className="welcome-btn model-search-btn"
-              onClick="window.location.href='#'"
+              // onClick="window.location.href='#'"
             >
               search
             </button>

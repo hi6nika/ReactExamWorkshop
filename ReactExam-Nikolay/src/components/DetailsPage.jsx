@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-const URL = "http://localhost:25565/cars/details";
+ //use the hoooks
 
 function DetailsPage() {
   const [car, setCar] = useState({});
