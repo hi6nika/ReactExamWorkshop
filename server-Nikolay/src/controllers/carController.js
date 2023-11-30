@@ -2,7 +2,7 @@ const CarController = require("express").Router();
 const carServices = require("../services/carServices");
 const toErrText = require("../util/toErrText");
 
-CarController.post("/addCar", async (req, res) => {
+CarController.post("/catalog", async (req, res) => {
   const data = req.body;
   try {
     const carData = await carServices.addCar({ ...data });

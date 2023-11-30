@@ -13,8 +13,6 @@ const reqTemplate = async (method, URL, data) => {
   const res = await fetch(BaseUrL + URL, options);
   const result = await res.json();
 
-  console.log(res);
-
   return result;
 };
 

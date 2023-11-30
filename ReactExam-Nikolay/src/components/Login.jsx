@@ -18,7 +18,7 @@ function Login() {
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setValues((state) => ({ ...state, [name]: value }));
-    setErrors([]);
+ 
   };
 
   async function submitEventHandler(e) {

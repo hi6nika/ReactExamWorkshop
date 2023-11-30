@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import FeaturedCarCard from "./FeaturedCarCard";
-import { useGetData } from "../hooks/useDataHooks";
+ 
+import { getCars } from "../services/carServices";
+
+
 
 function FeaturedCars() {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      setCars(await useGetData("GET", "Cars"));
+      setCars( await getCars());
     };
 
     fetchData().catch((e) => {
