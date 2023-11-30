@@ -29,9 +29,11 @@ function Register() {
   async function submitEventHandler(e) {
     e.preventDefault();
 
-    console.log(values);
-
-    await register(values);
+try {
+  await register(values);
+} catch (error) {
+  console.log(error)
+}  
   }
 
   return (

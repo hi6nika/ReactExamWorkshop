@@ -1,21 +1,36 @@
 import styles from "../assets/css/Forms.module.css";
 import { Link, NavLink } from "react-router-dom";
 
-async function submitEventHandler(e) {
-  e.preventDefault();
+import { login } from "../services/userServices";
+import { useState } from "react";
 
-  const form = e.target;
+const FORM_KEYS = {
+  Email: "email",
+  Password: "password",
+};
 
-  const formData = new FormData(form);
-  formData.forEach((value, key) => {
-    formDataObject[key] = value;
+function Login() {
+  const [values, setValues] = useState({
+    [FORM_KEYS.Email]: "",
+    [FORM_KEYS.Password]: "",
   });
 
-  console.log(formDataObject);
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setValues((state) => ({ ...state, [name]: value }));
+    setErrors([]);
+  };
 
-  form.reset();
-}
-function Login() {
+  async function submitEventHandler(e) {
+    e.preventDefault();
+
+    try {
+      await login(values);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,9 +46,10 @@ function Login() {
           <input
             type="text"
             placeholder="Enter Email"
-            name="email"
-            id="email"
-            required=""
+            name={FORM_KEYS.Email}
+            value={values[FORM_KEYS.Email]}
+            onChange={changeHandler}
+            id={FORM_KEYS.Email}
           />
           <label htmlFor="psw">
             <b>Password</b>
@@ -41,19 +57,20 @@ function Login() {
           <input
             type="password"
             placeholder="Enter Password"
-            name="psw"
-            id="psw"
-            required=""
+            name={FORM_KEYS.Password}
+            value={values[FORM_KEYS.Password]}
+            onChange={changeHandler}
+            id={FORM_KEYS.Password}
           />
 
-          <button type="submit" className="registerbtn">
-            Login
+          <button type="submit">
+            <a>Login</a>
           </button>
           <hr />
         </div>
         <div className="container signin">
           <p>
-            Don't have an account? 
+            Don't have an account?
             <Link to={"/register"}>
               <a>Sign Up</a>
             </Link>
