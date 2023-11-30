@@ -6,6 +6,9 @@ const jwt = require("../util/jwtPromisify");
 const { SECRET } = require("../constants");
 
 exports.register = async (data) => {
+
+ 
+   
   const user = await User.create(data);
 
   if (user) {

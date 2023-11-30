@@ -34,6 +34,13 @@ const userSchema = new mongoose.Schema({
     maxLength: [20, "Password must not be more than 20 characters!"],
   },
 });
+
+userSchema.virtual("repeatPassword").set(function (value) {
+  if (value !== this.password) {
+    throw new mongoose.MongooseError("Passwords should be the same!");
+  }
+});
+
 userSchema.pre("save", async function () {
   const hash = await bcrypt.hash(this.password, 5);
   this.password = hash;

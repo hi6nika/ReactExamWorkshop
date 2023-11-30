@@ -4,8 +4,10 @@ const toErrText = require("../util/toErrText");
 
 userController.post("/register", async (req, res) => {
   const data = req.body;
+
   try {
     const userData = await userServices.register({ ...data });
+
     res.status(201).json(userData);
   } catch (error) {
     res.status(400).send(toErrText(error));

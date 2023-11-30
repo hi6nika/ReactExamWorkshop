@@ -1,11 +1,10 @@
 import styles from "../assets/css/Forms.module.css";
+import { Link, NavLink } from "react-router-dom";
 
 async function submitEventHandler(e) {
   e.preventDefault();
 
   const form = e.target;
-
- 
 
   const formData = new FormData(form);
   formData.forEach((value, key) => {
@@ -54,7 +53,11 @@ function Login() {
         </div>
         <div className="container signin">
           <p>
-            Don't have an account? <a href="#">Sign up</a>.
+            Don't have an account? 
+            <Link to={"/register"}>
+              <a>Sign Up</a>
+            </Link>
+            .
           </p>
         </div>
       </form>

@@ -1,22 +1,19 @@
 const Car = require("../mongoose/models/car");
 
-
 exports.addCar = async (data) => {
   const car = await Car.create(data);
 
-  return car
+  return car;
 };
 
-
-
 exports.getAllCars = async (data) => {
-  const car = await Car.find().lean()
+  const car = await Car.find().lean();
 
-  return car
+  return car;
 };
 
 exports.getCar = async (id) => {
-  const car = await Car.findById(id).lean()
+  const car = await Car.findById(id).lean();
 
-  return car
+  return car;
 };

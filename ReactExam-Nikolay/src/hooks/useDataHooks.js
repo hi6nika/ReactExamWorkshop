@@ -1,4 +1,4 @@
-const BaseURL = `http://localhost:25565/`;
+const BaseURL = `http://localhost:3000/`;
 const paths = {
   Cars: "cars/catalog",
 };
