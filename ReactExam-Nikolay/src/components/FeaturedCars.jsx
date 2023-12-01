@@ -3,7 +3,7 @@ import FeaturedCarCard from "./FeaturedCarCard";
 
 import { getCars } from "../services/carServices";
 
-function formatData(arr) {
+ function formatData(arr) {
   const copy = [...arr];
   const output = [];
 
@@ -31,6 +31,7 @@ function formatData(arr) {
   }
   return output;
 }
+
 
 function FeaturedCars() {
   const [cars, setCars] = useState([]);
