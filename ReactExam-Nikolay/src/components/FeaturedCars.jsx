@@ -2,8 +2,7 @@ import { React, useEffect, useState } from "react";
 import FeaturedCarCard from "./FeaturedCarCard";
 
 import { getCars } from "../services/carServices";
-
- function formatData(arr) {
+function formatData(arr) {
   const copy = [...arr];
   const output = [];
 
@@ -14,24 +13,33 @@ import { getCars } from "../services/carServices";
   while (times > 0) {
     for (let i = 0; i < copy.length; i++) {
       buff.push(copy[i]);
+
       if (i === 3) {
         output.push(buff);
         buff = [];
+
+        copy.splice(0, 4);
         break;
-      }  
-       if (copy.length  === 1) {
+      }
+
+      if (buff.length === copy.length) {
+        output.push(buff);
+        break;
+      }
+
+      if (copy.length === 1) {
         output.push(buff);
         buff = [];
         break;
       }
     }
-    copy.splice(0, 4);
 
     times--;
   }
+  console.log("===");
+
   return output;
 }
-
 
 function FeaturedCars() {
   const [cars, setCars] = useState([]);
@@ -39,9 +47,9 @@ function FeaturedCars() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getCars();
-      setCars(formatData(data));
 
-    
+      console.log(data);
+      setCars(formatData(data));
     };
 
     fetchData().catch((e) => {
@@ -61,13 +69,14 @@ function FeaturedCars() {
         {/*/.section-header*/}
         <div className="featured-cars-content">
           {cars.map((cars) => {
-             
-              return <div  className="row"> {cars.map(car => {
-                return <FeaturedCarCard key={car._id} {...car} />;
-              })}</div>;
-           
-
-            
+            return (
+              <div className="row">
+                {" "}
+                {cars.map((car) => {
+                  return <FeaturedCarCard key={car._id} {...car} />;
+                })}
+              </div>
+            );
           })}
         </div>
       </div>
