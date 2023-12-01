@@ -3,25 +3,33 @@ import FeaturedCarCard from "./FeaturedCarCard";
 
 import { getCars } from "../services/carServices";
 
-function formatData(data) {
+function formData(arr) {
+  const copy = [...arr];
   const output = [];
 
-  let buffer = [];
+  let buff = [];
 
-  for (let i = 0; i < data.length; i++) {
-    buffer.push(data[i]);
+  let times = Math.ceil(copy.length / 4);
 
-    if (i === 3) {
-      output.push(buffer);
-      buffer = []
+  while (times > 0) {
+    for (let i = 0; i < copy.length; i++) {
+      buff.push(copy[i]);
+      if (i === 3) {
+        output.push(buff);
+        buff = [];
+        break;
+      }  
+       if (copy.length  === 1) {
+        output.push(buff);
+        buff = [];
+        break;
+      }
     }
+    copy.splice(0, 4);
 
-    if(i < data.length){
-      output.push(buffer);
-    }
+    times--;
   }
-
-  return output
+  return output;
 }
 
 function FeaturedCars() {
@@ -51,12 +59,14 @@ function FeaturedCars() {
         </div>
         {/*/.section-header*/}
         <div className="featured-cars-content">
-          {cars.map((car, i) => {
-            if (i === 3 || i === 0) {
-              return <div className="row"> </div>;
-            }
+          {cars.map((cars) => {
+             
+              return <div  className="row"> {cars.map(car => {
+                return <FeaturedCarCard key={car._id} {...car} />;
+              })}</div>;
+           
 
-            return <FeaturedCarCard key={car._id} {...car} />;
+            
           })}
         </div>
       </div>
