@@ -3,7 +3,7 @@ import FeaturedCarCard from "./FeaturedCarCard";
 
 import { getCars } from "../services/carServices";
 
-function formData(arr) {
+function formatData(arr) {
   const copy = [...arr];
   const output = [];
 
@@ -40,7 +40,7 @@ function FeaturedCars() {
       const data = await getCars();
       setCars(formatData(data));
 
-      console.log(cars)
+    
     };
 
     fetchData().catch((e) => {
