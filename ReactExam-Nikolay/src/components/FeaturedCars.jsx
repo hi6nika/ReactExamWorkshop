@@ -1,16 +1,38 @@
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import FeaturedCarCard from "./FeaturedCarCard";
- 
+
 import { getCars } from "../services/carServices";
 
+function formatData(data) {
+  const output = [];
 
+  let buffer = [];
+
+  for (let i = 0; i < data.length; i++) {
+    buffer.push(data[i]);
+
+    if (i === 3) {
+      output.push(buffer);
+      buffer = []
+    }
+
+    if(i < data.length){
+      output.push(buffer);
+    }
+  }
+
+  return output
+}
 
 function FeaturedCars() {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      setCars( await getCars());
+      const data = await getCars();
+      setCars(formatData(data));
+
+      console.log(cars)
     };
 
     fetchData().catch((e) => {
@@ -29,13 +51,13 @@ function FeaturedCars() {
         </div>
         {/*/.section-header*/}
         <div className="featured-cars-content">
-          <div className="row">
-            {cars.map((car) => (
-              <FeaturedCarCard key={car._id} {...car} />
-            ))}
+          {cars.map((car, i) => {
+            if (i === 3 || i === 0) {
+              return <div className="row"> </div>;
+            }
 
-            {/* CARS HERE MY Friend */}
-          </div>
+            return <FeaturedCarCard key={car._id} {...car} />;
+          })}
         </div>
       </div>
       {/*/.container*/}
