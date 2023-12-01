@@ -60,6 +60,12 @@ function Navigation() {
                 </li>
 
                 <li className="scroll">
+                  <Link>
+                    <a href="#new-cars">my cars</a>
+                  </Link>
+                </li>
+
+                <li className="scroll">
                   <Link to="/register">
                     <a>register</a>
                   </Link>
@@ -71,15 +77,7 @@ function Navigation() {
                   </Link>
                 </li>
 
-                <li className="scroll">
-                  <a href="#new-cars">new cars</a>
-                </li>
-                <li className="scroll">
-                  <a href="#brand">brands</a>
-                </li>
-                <li className="scroll">
-                  <a href="#contact">contact</a>
-                </li>
+          
               </ul>
               {/*/.nav */}
             </div>

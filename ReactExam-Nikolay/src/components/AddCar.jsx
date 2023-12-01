@@ -1,8 +1,7 @@
-import { Link, NavLink , useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import { addCar } from "../services/carServices";
 import { useState } from "react";
-
 
 const FORM_KEYS = {
   imgUrl: "imgUrl",
@@ -15,10 +14,8 @@ const FORM_KEYS = {
 };
 
 function AddCar() {
-
   const navigateTo = useNavigate();
   const [errors, setErrors] = useState([]);
-
 
   const [values, setValues] = useState({
     [FORM_KEYS.imgUrl]: "",
@@ -40,12 +37,14 @@ function AddCar() {
 
     try {
       await addCar(values);
+      navigateTo("/featured");
     } catch (error) {
       setErrors(error);
     }
 
-    if(!errors){
-navigateTo("/featured")
+    if (!errors) {
+      console.log("a")
+      
     }
   }
 
