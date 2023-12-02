@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { getCar } from "../services/carServices";
 
-//use the hoooks
+ 
 
 function DetailsPage() {
   const [car, setCar] = useState({});
@@ -14,8 +14,6 @@ function DetailsPage() {
       const data = await getCar(id);
 
       setCar(data);
-
-      console.log(data);
     };
 
     fetchData().catch((e) => {
@@ -36,6 +34,8 @@ function DetailsPage() {
               year: {car.year}
               <span className="featured-mi-span"> {car.milage} mi</span>
               <span className="featured-hp-span"> {car.horsePower}HP</span>
+              <span className="featured-hp-span"> {car.body} </span>
+              <span className="featured-hp-span"> {car.condition} </span>
             </p>
           </div>
         </div>
@@ -47,7 +47,8 @@ function DetailsPage() {
           </h2>
           <h3>${car.price}</h3>
           <p>description : {car.description}</p>
-        </div>{" "}
+        </div>
+        <Link> <a >Buy</a></Link>
       </div>
     </>
   );
