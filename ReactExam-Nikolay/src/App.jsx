@@ -1,18 +1,18 @@
-import "./assets/css/style.css";
-import FeaturedCars from "./components/FeaturedCars";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
+import AuthContext from "./contexts/authContext";
+import { login, register } from "./services/userServices";
+
+import "./assets/css/style.css";
+
+import FeaturedCars from "./components/FeaturedCars";
 import Home from "./components/Home";
 import Register from "./components/Register";
-import { Routes, Route, useNavigate } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import AddCar from "./components/AddCar";
 import DetailsPage from "./components/DetailsPage";
-import { useState } from "react";
-
-import AuthContext from "./contexts/authContext";
-
-import { login } from "./services/userServices";
 
 function App() {
   const navigate = useNavigate();
@@ -29,7 +29,22 @@ function App() {
     }
   };
 
-  const values = { loginSubmitHandler, isAuthenticated: !!auth.token };
+  async function registerEventHandler(values) {
+    try {
+      const token = await register(values);
+      setAuth(token);
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const values = {
+    registerEventHandler,
+    loginSubmitHandler,
+    isAuthenticated: !!auth.token,
+  };
 
   return (
     <>

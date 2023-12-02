@@ -1,45 +1,26 @@
 import styles from "../assets/css/Forms.module.css";
 import { Link, NavLink } from "react-router-dom";
 
-import { register } from "../services/userServices";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../contexts/authContext";
+import useForm from "../hooks/useFormHook";
 
-const FORM_KEYS = {
-  FirstName: "firstName",
-  LastName: "lastName",
-  Email: "email",
-  Password: "password",
-  RePassword: "repeatPassword",
-};
-
+ 
 function Register() {
-  const [values, setValues] = useState({
-    [FORM_KEYS.FirstName]: "",
-    [FORM_KEYS.LastName]: "",
-    [FORM_KEYS.Email]: "",
-    [FORM_KEYS.Password]: "",
+  const { registerEventHandler } = useContext(AuthContext);
+
+  const { values, onChange, onSubmit } = useForm(registerEventHandler, {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
   });
-
-  const changeHandler = (e) => {
-    const { name, value } = e.target;
-    setValues((state) => ({ ...state, [name]: value }));
-   
-  };
-
-  async function submitEventHandler(e) {
-    e.preventDefault();
-
-try {
-  await register(values);
-} catch (error) {
-  console.log(error)
-}  
-  }
 
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <form onSubmit={submitEventHandler}>
+      <form onSubmit={onSubmit}>
         <div className="container">
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
@@ -51,10 +32,10 @@ try {
           <input
             type="text"
             placeholder="Enter Name"
-            name={FORM_KEYS.FirstName}
-            value={values[FORM_KEYS.FirstName]}
-            onChange={changeHandler}
-            id={FORM_KEYS.FirstName}
+            name="firstName"
+            id="firstName"
+            value={values.firstName}
+            onChange={onChange}
           />
 
           <label htmlFor="email">
@@ -63,10 +44,10 @@ try {
           <input
             type="text"
             placeholder="Enter Email"
-            name={FORM_KEYS.Email}
-            value={values[FORM_KEYS.Email]}
-            onChange={changeHandler}
-            id={FORM_KEYS.Email}
+            name="email"
+            id="email"
+            value={values.email}
+            onChange={onChange}
           />
           <label htmlFor="password">
             <b>Password</b>
@@ -74,10 +55,10 @@ try {
           <input
             type="password"
             placeholder="Enter Password"
-            name={FORM_KEYS.Password}
-            value={values[FORM_KEYS.Password]}
-            id={FORM_KEYS.Password}
-            onChange={changeHandler}
+            name="password"
+            value={values.password}
+            id="password"
+            onChange={onChange}
           />
           <label htmlFor="repeatPassword">
             <b>Repeat Password</b>
@@ -85,10 +66,10 @@ try {
           <input
             type="password"
             placeholder="Repeat Password"
-            name={FORM_KEYS.RePassword}
-            value={values[FORM_KEYS.RePassword]}
-            id={FORM_KEYS.RePassword}
-            onChange={changeHandler}
+            name={"repeatPassword"}
+            id={"repeatPassword"}
+            value={values.repeatPassword}
+            onChange={onChange}
           />
 
           <button type="submit">

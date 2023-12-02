@@ -2,61 +2,42 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import { addCar } from "../services/carServices";
 import { useState } from "react";
-
-const FORM_KEYS = {
-  imgUrl: "imgUrl",
-  make: "make",
-  model: "model",
-  condition: "condition",
-  year: "year",
-  body: "body",
-  price: "price",
-  horsePower: "horsePower",
-  milage: "milage",
-  description: "description",
-};
+import useForm from "../hooks/useFormHook";
 
 function AddCar() {
   const navigateTo = useNavigate();
   const [errors, setErrors] = useState([]);
 
-  const [values, setValues] = useState({
-    [FORM_KEYS.imgUrl]: "",
-    [FORM_KEYS.make]: "",
-    [FORM_KEYS.model]: "",
-    [FORM_KEYS.condition]: "",
-    [FORM_KEYS.year]: "",
-    [FORM_KEYS.body]: "",
-    [FORM_KEYS.price]: "",
-    [FORM_KEYS.horsePower]: "",
-    [FORM_KEYS.milage]: "",
-    [FORM_KEYS.description]: "",
-  });
-
-  const changeHandler = (e) => {
-    const { name, value } = e.target;
-    setValues((state) => ({ ...state, [name]: value }));
-  };
-
-  async function submitEventHandler(e) {
-    e.preventDefault();
-
+  async function submitEventHandler(value) {
     try {
-      await addCar(values);
+      await addCar(value);
       navigateTo("/featured");
     } catch (error) {
       setErrors(error);
     }
 
     if (!errors) {
-      console.log("a");
+      console.log(errors);
     }
   }
+
+  const { values, onChange, onSubmit } = useForm(submitEventHandler, {
+    imgUrl: "",
+    make: "",
+    model: "",
+    condition: "",
+    year: "",
+    body: "",
+    price: "",
+    horsePower: "",
+    milage: "",
+    description: "",
+  });
 
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <form onSubmit={submitEventHandler}>
+      <form onSubmit={onSubmit}>
         <div className="container">
           <h1>Add a car</h1>
 
@@ -68,10 +49,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter imgUrl"
-            name={FORM_KEYS.imgUrl}
-            value={values[FORM_KEYS.imgUrl]}
-            onChange={changeHandler}
-            id={FORM_KEYS.imgUrl}
+            name="imgUrl"
+            value={values.imgUrl}
+            onChange={onChange}
+            id="imgUrl"
           />
 
           <label htmlFor="make">
@@ -80,10 +61,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter Make"
-            name={FORM_KEYS.make}
-            value={values[FORM_KEYS.make]}
-            onChange={changeHandler}
-            id={FORM_KEYS.make}
+            name="make"
+            value={values.make}
+            onChange={onChange}
+            id="make"
           />
 
           <label htmlFor="model">
@@ -92,10 +73,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter Model"
-            name={FORM_KEYS.model}
-            value={values[FORM_KEYS.model]}
-            onChange={changeHandler}
-            id={FORM_KEYS.model}
+            name="model"
+            value={values.model}
+            onChange={onChange}
+            id="model"
           />
 
           <label htmlFor="condition">
@@ -104,10 +85,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter Condition"
-            name={FORM_KEYS.condition}
-            value={values[FORM_KEYS.condition]}
-            onChange={changeHandler}
-            id={FORM_KEYS.condition}
+            name="condition"
+            value={values.condition}
+            onChange={onChange}
+            id="condition"
           />
 
           <label htmlFor="year">
@@ -116,10 +97,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter Year"
-            name={FORM_KEYS.year}
-            value={values[FORM_KEYS.year]}
-            onChange={changeHandler}
-            id={FORM_KEYS.year}
+            name="year"
+            value={values.year}
+            onChange={onChange}
+            id="year"
           />
 
           <label htmlFor="body">
@@ -128,10 +109,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter Body Style"
-            name={FORM_KEYS.body}
-            value={values[FORM_KEYS.body]}
-            onChange={changeHandler}
-            id={FORM_KEYS.body}
+            name="body"
+            value={values.body}
+            onChange={onChange}
+            id="body"
           />
 
           <label htmlFor="price">
@@ -140,10 +121,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter Price"
-            name={FORM_KEYS.price}
-            value={values[FORM_KEYS.price]}
-            onChange={changeHandler}
-            id={FORM_KEYS.price}
+            name="price"
+            value={values.price}
+            onChange={onChange}
+            id="price"
           />
 
           <label htmlFor="horsePower">
@@ -152,10 +133,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter HP"
-            name={FORM_KEYS.horsePower}
-            value={values[FORM_KEYS.horsePower]}
-            onChange={changeHandler}
-            id={FORM_KEYS.horsePower}
+            name="horsePower"
+            value={values.horsePower}
+            onChange={onChange}
+            id="horsePower"
           />
 
           <label htmlFor="milage">
@@ -164,10 +145,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter Milage"
-            name={FORM_KEYS.milage}
-            value={values[FORM_KEYS.milage]}
-            onChange={changeHandler}
-            id={FORM_KEYS.milage}
+            name="milage"
+            value={values.milage}
+            onChange={onChange}
+            id="milage"
           />
 
           <label htmlFor="description">
@@ -176,10 +157,10 @@ function AddCar() {
           <input
             type="text"
             placeholder="Enter Description"
-            name={FORM_KEYS.description}
-            value={values[FORM_KEYS.description]}
-            onChange={changeHandler}
-            id={FORM_KEYS.description}
+            name="description"
+            value={values.description}
+            onChange={onChange}
+            id="description"
           />
 
           <button type="submit">
