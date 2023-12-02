@@ -20,7 +20,7 @@ userController.post("/login", async (req, res) => {
     const userData = await userServices.login(email, password);
     res.status(200).json(userData);
   } catch (error) {
-    res.status(401).send(toErrText(error));
+    res.status(403).send(toErrText(error));
   }
 });
 

@@ -10,6 +10,7 @@ const reqTemplate = async (method, URL, data) => {
     options.body = JSON.stringify(data);
   }
 
+
   const res = await fetch(BaseUrL + URL, options);
   const result = await res.json();
 

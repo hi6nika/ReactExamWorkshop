@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import AuthContext from "../contexts/authContext";
 
 function Navigation() {
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
     <div className="top-area">
       <div className="header-area">
@@ -53,31 +57,37 @@ function Navigation() {
                   </Link>
                 </li>
 
-                <li className="scroll">
-                  <Link to="/addCar">
-                    <a>add car</a>
-                  </Link>
-                </li>
+                {isAuthenticated && (
+                  <>
+                    <li className="scroll">
+                      <Link to="/addCar">
+                        <a>add car</a>
+                      </Link>
+                    </li>
 
-                <li className="scroll">
-                  <Link>
-                    <a href="#new-cars">my cars</a>
-                  </Link>
-                </li>
+                    <li className="scroll">
+                      <Link>
+                        <a href="#new-cars">my cars</a>
+                      </Link>
+                    </li>
+                  </>
+                )}
 
-                <li className="scroll">
-                  <Link to="/register">
-                    <a>register</a>
-                  </Link>
-                </li>
+                {!isAuthenticated && (
+                  <>
+                    <li className="scroll">
+                      <Link to="/register">
+                        <a>register</a>
+                      </Link>
+                    </li>
 
-                <li className="scroll">
-                  <Link to="/login">
-                    <a>Login</a>
-                  </Link>
-                </li>
-
-          
+                    <li className="scroll">
+                      <Link to="/login">
+                        <a>Login</a>
+                      </Link>
+                    </li>
+                  </>
+                )}
               </ul>
               {/*/.nav */}
             </div>

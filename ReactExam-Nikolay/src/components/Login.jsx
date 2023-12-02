@@ -1,40 +1,23 @@
 import styles from "../assets/css/Forms.module.css";
 import { Link, NavLink } from "react-router-dom";
 
-import { login } from "../services/userServices";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
-const FORM_KEYS = {
-  Email: "email",
-  Password: "password",
-};
+import useForm from "../hooks/useFormHook";
+import AuthContext from "../contexts/authContext";
 
 function Login() {
-  const [values, setValues] = useState({
-    [FORM_KEYS.Email]: "",
-    [FORM_KEYS.Password]: "",
+  const { loginSubmitHandler } = useContext(AuthContext);
+
+  const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+    email: "",
+    password: "",
   });
-
-  const changeHandler = (e) => {
-    const { name, value } = e.target;
-    setValues((state) => ({ ...state, [name]: value }));
- 
-  };
-
-  async function submitEventHandler(e) {
-    e.preventDefault();
-
-    try {
-      await login(values);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <form onSubmit={submitEventHandler}>
+      <form onSubmit={onSubmit}>
         <div className="container">
           <h1>Login</h1>
           <p>Please fill in this form to login.</p>
@@ -46,10 +29,10 @@ function Login() {
           <input
             type="text"
             placeholder="Enter Email"
-            name={FORM_KEYS.Email}
-            value={values[FORM_KEYS.Email]}
-            onChange={changeHandler}
-            id={FORM_KEYS.Email}
+            name="email"
+            id="email"
+            onChange={onChange}
+            value={values.email}
           />
           <label htmlFor="psw">
             <b>Password</b>
@@ -57,10 +40,10 @@ function Login() {
           <input
             type="password"
             placeholder="Enter Password"
-            name={FORM_KEYS.Password}
-            value={values[FORM_KEYS.Password]}
-            onChange={changeHandler}
-            id={FORM_KEYS.Password}
+            name="password"
+            id="password"
+            onChange={onChange}
+            value={values.password}
           />
 
           <button type="submit">
