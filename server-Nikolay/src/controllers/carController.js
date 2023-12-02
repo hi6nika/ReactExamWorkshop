@@ -26,7 +26,9 @@ CarController.get("/details/:id", async (req, res) => {
 
   try {
     const carData = await carServices.getCar(id);
-    res.status(200).json(carData);
+
+ 
+    res.status(230).json(carData);
   } catch (error) {
     res.status(400).send(toErrText(error));
   }

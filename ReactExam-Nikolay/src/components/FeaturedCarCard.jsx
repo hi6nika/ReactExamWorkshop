@@ -9,6 +9,8 @@ function FeaturedCarCard({
   year,
   body,
   price,
+  milage,
+  horsePower,
 }) {
   return (
     <>
@@ -21,23 +23,20 @@ function FeaturedCarCard({
             <div className="featured-model-info">
               <p>
                 year: {year}
-                <span className="featured-mi-span"> 3100 mi</span>
-                <span className="featured-hp-span"> 240HP</span>
-                {body}
+                <span className="featured-mi-span"> {milage} mi</span>
+                <span className="featured-hp-span">
+                  {horsePower}HP
+                </span> body: {body}
               </p>
             </div>
           </div>
           <div className="featured-cars-txt">
             <h2>
-              <a href="#">
+              <a>
                 {make} {model}
               </a>
             </h2>
             <h3>${price}</h3>
-            <p>
-              Neque porro quiam est, qui dolorem ipsum quia dolor sit amet,
-              consectetur, adipisci velit, sed quia non.
-            </p>
           </div>
           <Link to={`/details/${_id}`}>
             <a>Details</a>

@@ -29,6 +29,22 @@ const carSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Price is required!"],
   },
+  horsePower: {
+    type: Number,
+    required: [true, "HP is required!"],
+  },
+  milage: {
+    type: Number,
+    required: [true, "Milage is required!"],
+  },
+  description: {
+    type: String,
+    required: [true, "Description is required!"],
+  },
+  // owner: {
+  //   type: Object,
+  //   required: [true, "Owner is required!"],
+  // },
 });
 
 const Car = mongoose.model("Car", carSchema);

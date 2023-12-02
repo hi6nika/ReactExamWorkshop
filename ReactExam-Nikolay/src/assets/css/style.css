@@ -45,7 +45,6 @@ font-family: 'Rufina', serif;
 
 @import url("./responsive.css");
 
- 
 * {
   padding: 0;
   margin: 0;
@@ -218,7 +217,7 @@ nav.navbar.bootsnav {
 /*.navbar-brand*/
 
 /*.nav li*/
-nav.navbar.bootsnav ul.nav   > li > link > a {
+nav.navbar.bootsnav ul.nav > li > link > a {
   color: #f5f7fa;
   font-size: 16px;
   font-weight: 500;
@@ -561,6 +560,25 @@ nav.navbar.bootsnav .navbar-toggle i {
   padding: 0 30px;
   height: 220px;
   border-bottom: 1px solid #dadfe9;
+}
+
+.details-cars-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+   width: 60%;
+   height: 60%;
+  border-bottom: 1px solid #dadfe9;
+}
+
+.details-div{
+  border: 5px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
 }
 .featured-model-info {
   padding: 12px 7px;

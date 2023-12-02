@@ -11,6 +11,9 @@ const FORM_KEYS = {
   year: "year",
   body: "body",
   price: "price",
+  horsePower: "horsePower",
+  milage: "milage",
+  description: "description",
 };
 
 function AddCar() {
@@ -25,6 +28,9 @@ function AddCar() {
     [FORM_KEYS.year]: "",
     [FORM_KEYS.body]: "",
     [FORM_KEYS.price]: "",
+    [FORM_KEYS.horsePower]: "",
+    [FORM_KEYS.milage]: "",
+    [FORM_KEYS.description]: "",
   });
 
   const changeHandler = (e) => {
@@ -43,8 +49,7 @@ function AddCar() {
     }
 
     if (!errors) {
-      console.log("a")
-      
+      console.log("a");
     }
   }
 
@@ -139,6 +144,42 @@ function AddCar() {
             value={values[FORM_KEYS.price]}
             onChange={changeHandler}
             id={FORM_KEYS.price}
+          />
+
+          <label htmlFor="horsePower">
+            <b>HP</b>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter HP"
+            name={FORM_KEYS.horsePower}
+            value={values[FORM_KEYS.horsePower]}
+            onChange={changeHandler}
+            id={FORM_KEYS.horsePower}
+          />
+
+          <label htmlFor="milage">
+            <b>Milage</b>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Milage"
+            name={FORM_KEYS.milage}
+            value={values[FORM_KEYS.milage]}
+            onChange={changeHandler}
+            id={FORM_KEYS.milage}
+          />
+
+          <label htmlFor="description">
+            <b>Description</b>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Description"
+            name={FORM_KEYS.description}
+            value={values[FORM_KEYS.description]}
+            onChange={changeHandler}
+            id={FORM_KEYS.description}
           />
 
           <button type="submit">
