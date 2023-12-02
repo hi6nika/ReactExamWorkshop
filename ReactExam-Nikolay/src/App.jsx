@@ -1,8 +1,6 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import AuthContext from "./contexts/authContext";
-import { login, register } from "./services/userServices";
+import { AuthProvider } from "./contexts/authContext";
 
 import "./assets/css/style.css";
 
@@ -15,40 +13,9 @@ import AddCar from "./components/AddCar";
 import DetailsPage from "./components/DetailsPage";
 
 function App() {
-  const navigate = useNavigate();
-  const [auth, setAuth] = useState({});
-
-  const loginSubmitHandler = async (values) => {
-    try {
-      const token = await login(values);
-      setAuth(token);
-
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  async function registerEventHandler(values) {
-    try {
-      const token = await register(values);
-      setAuth(token);
-
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const values = {
-    registerEventHandler,
-    loginSubmitHandler,
-    isAuthenticated: !!auth.token,
-  };
-
   return (
     <>
-      <AuthContext.Provider value={values}>
+      <AuthProvider>
         <Navigation />
 
         <Routes>
@@ -59,7 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/details/:id" element={<DetailsPage />} />
         </Routes>
-      </AuthContext.Provider>
+      </AuthProvider>
     </>
   );
 }

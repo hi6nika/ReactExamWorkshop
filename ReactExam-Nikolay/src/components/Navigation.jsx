@@ -47,7 +47,7 @@ function Navigation() {
               >
                 <li className="scroll">
                   <Link to="/">
-                    <a>home</a>
+                    <a>home </a>
                   </Link>
                 </li>
 
