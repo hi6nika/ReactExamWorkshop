@@ -45,8 +45,9 @@ const carSchema = new mongoose.Schema({
     type: Array,
     required: [true, "Owner is required!"],
   },
-  viewers: {
+  views: {
     type: Number,
+    required: [true, "views is required!"],
   },
 });
 

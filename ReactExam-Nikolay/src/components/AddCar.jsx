@@ -9,6 +9,8 @@ function AddCar() {
   const [errors, setErrors] = useState([]);
   const [user] = useUserHook("auth", []);
 
+  const [views, setViews] = useState(0);
+
   const navigateTo = useNavigate();
 
   async function submitEventHandler(value) {
@@ -36,6 +38,7 @@ function AddCar() {
     milage: "",
     description: "",
     owner: user,
+    views: views,
   });
 
   return (

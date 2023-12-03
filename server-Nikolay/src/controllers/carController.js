@@ -37,10 +37,8 @@ CarController.get("/details/:id", async (req, res) => {
 CarController.put("/details/:id", async (req, res) => {
   const { id } = req.params;
 
-  const newCar = req.body;
-
   try {
-    const carData = await carServices.updateCar(id, newCar);
+    const carData = await carServices.updateCarViews(id);
 
     res.status(230).json(carData);
   } catch (error) {
