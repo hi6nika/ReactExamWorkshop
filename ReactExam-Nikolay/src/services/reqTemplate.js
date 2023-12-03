@@ -20,4 +20,5 @@ const reqTemplate = async (method, URL, data) => {
 export const requests = {
   get: reqTemplate.bind(null, "GET"),
   post: reqTemplate.bind(null, "POST"),
+  put: reqTemplate.bind(null, "PUT"),
 };

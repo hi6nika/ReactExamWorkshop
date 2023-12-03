@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { getCar } from "../services/carServices";
+import { addViews, getCar } from "../services/carServices";
 import useUserHook from "../hooks/useUserHooks";
 
 function DetailsPage() {
@@ -15,7 +15,9 @@ function DetailsPage() {
     const fetchData = async () => {
       const data = await getCar(id);
 
+      addViews(id);
       setIsOwner(data.owner[0] === userID);
+
       setCar(data);
     };
 
@@ -52,7 +54,7 @@ function DetailsPage() {
           <p>description : {car.description} </p>
         </div>
         <Link>
-          <a>Buy</a>
+          <a>Phone number</a>
         </Link>
 
         {isOwner && (

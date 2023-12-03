@@ -17,3 +17,9 @@ exports.getCar = async (id) => {
 
   return car;
 };
+
+exports.updateCar = async (id, newData) => {
+  const car = await Car.findByIdAndUpdate(id, newData);
+  console.log(car);
+  return car;
+};

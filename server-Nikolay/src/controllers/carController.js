@@ -34,4 +34,18 @@ CarController.get("/details/:id", async (req, res) => {
   }
 });
 
+CarController.put("/details/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const newCar = req.body;
+
+  try {
+    const carData = await carServices.updateCar(id, newCar);
+
+    res.status(230).json(carData);
+  } catch (error) {
+    res.status(400).send(toErrText(error));
+  }
+});
+
 module.exports = CarController;
