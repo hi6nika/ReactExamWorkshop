@@ -53,19 +53,18 @@ function DetailsPage() {
           <h3>${car.price}</h3>
           <p>description : {car.description} </p>
         </div>
-        <Link>
-          <a>Phone number</a>
-        </Link>
 
         {isOwner && (
           <>
-            <h1>daa</h1>
+            <p>Views: {car.views}</p>
           </>
         )}
 
         {!isOwner && (
           <>
-            <h1>NEE</h1>
+            <Link>
+              <a>Seller Name : </a>
+            </Link>
           </>
         )}
       </div>
