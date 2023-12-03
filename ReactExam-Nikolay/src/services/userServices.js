@@ -1,4 +1,5 @@
 const UserUrl = "/users";
+
 import { requests } from "../services/reqTemplate";
 
 const userEndpoints = {
@@ -13,4 +14,10 @@ export const register = async (data) => {
 
 export const login = async (data) => {
   return await requests.post(userEndpoints.login, data);
+};
+
+export const logout = () => {
+  localStorage.clear();
+
+  return true;
 };

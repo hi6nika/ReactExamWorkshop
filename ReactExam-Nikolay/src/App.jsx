@@ -11,6 +11,7 @@ import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import AddCar from "./components/AddCar";
 import DetailsPage from "./components/DetailsPage";
+import Logout from "./components/Logout";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/addCar" element={<AddCar />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/details/:id" element={<DetailsPage />} />
         </Routes>
       </AuthProvider>

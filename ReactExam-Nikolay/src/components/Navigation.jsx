@@ -60,14 +60,20 @@ function Navigation() {
                 {isAuthenticated && (
                   <>
                     <li className="scroll">
+                      <Link>
+                        <a href="#new-cars">my cars</a>
+                      </Link>
+                    </li>
+
+                    <li className="scroll">
                       <Link to="/addCar">
                         <a>add car</a>
                       </Link>
                     </li>
 
                     <li className="scroll">
-                      <Link>
-                        <a href="#new-cars">my cars</a>
+                      <Link to="/logout">
+                        <a>logout</a>
                       </Link>
                     </li>
                   </>

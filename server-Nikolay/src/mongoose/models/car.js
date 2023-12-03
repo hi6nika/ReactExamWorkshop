@@ -41,10 +41,10 @@ const carSchema = new mongoose.Schema({
     type: String,
     required: [true, "Description is required!"],
   },
-  // owner: {
-  //   type: Object,
-  //   required: [true, "Owner is required!"],
-  // },
+  owner: {
+    type: Array,
+    required: [true, "Owner is required!"],
+  },
 });
 
 const Car = mongoose.model("Car", carSchema);

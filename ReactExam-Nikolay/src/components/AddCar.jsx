@@ -1,12 +1,15 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import { addCar } from "../services/carServices";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useForm from "../hooks/useFormHook";
+import useUserHook from "../hooks/useUserHooks";
 
 function AddCar() {
-  const navigateTo = useNavigate();
   const [errors, setErrors] = useState([]);
+  const [user] = useUserHook("auth", []);
+
+  const navigateTo = useNavigate();
 
   async function submitEventHandler(value) {
     try {
@@ -32,6 +35,7 @@ function AddCar() {
     horsePower: "",
     milage: "",
     description: "",
+    owner: user,
   });
 
   return (

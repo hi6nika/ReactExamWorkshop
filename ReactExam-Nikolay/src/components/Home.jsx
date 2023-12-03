@@ -1,5 +1,3 @@
-import Navigation from "./Navigation";
-
 import SearchBox from "./SearchBox";
 
 function Home() {
