@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../contexts/authContext";
 
 function Navigation() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, firstName, token } = useContext(AuthContext);
 
   return (
     <div className="top-area">
@@ -28,7 +28,8 @@ function Navigation() {
 
               <Link to="/">
                 <a className="navbar-brand">
-                  carvilla
+                  {firstName && `Welcome, ${firstName} to`} carvilla{" "}
+                  {firstName && "!"}
                   <span />
                 </a>
               </Link>

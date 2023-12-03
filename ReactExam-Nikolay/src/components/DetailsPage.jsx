@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { addViews, getCar } from "../services/carServices";
 import useUserHook from "../hooks/useUserHooks";
+import AuthContext from "../contexts/authContext";
 
 function DetailsPage() {
   const [car, setCar] = useState({});
   const { id } = useParams();
+  const { firstName, _id } = useContext(AuthContext);
 
   const [user, userID] = useUserHook("auth", []);
 
@@ -25,6 +27,10 @@ function DetailsPage() {
       console.log(e);
     });
   }, []);
+
+  function onClickH() {
+    console.log(firstName, _id);
+  }
 
   return (
     <>
@@ -62,8 +68,8 @@ function DetailsPage() {
 
         {!isOwner && (
           <>
-            <Link>
-              <a>Seller Name : </a>
+            <Link onClick={onClickH}>
+              <a>BUY!</a>
             </Link>
           </>
         )}
