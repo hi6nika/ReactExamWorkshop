@@ -1,4 +1,5 @@
 const CarController = require("express").Router();
+
 const carServices = require("../services/carServices");
 const toErrText = require("../util/toErrText");
 
@@ -27,7 +28,6 @@ CarController.get("/details/:id", async (req, res) => {
   try {
     const carData = await carServices.getCar(id);
 
- 
     res.status(230).json(carData);
   } catch (error) {
     res.status(400).send(toErrText(error));
