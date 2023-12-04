@@ -47,7 +47,11 @@ const carSchema = new mongoose.Schema({
   },
   views: {
     type: Number,
-    required: [true, "views is required!"],
+    required: [true, "Views is required!"],
+  },
+  buyers: {
+    type: Array,
+    required: [true, "Buyers is required!"],
   },
 });
 

@@ -39,6 +39,7 @@ function AddCar() {
     description: "",
     owner: user,
     views: views,
+    buyers: [],
   });
 
   return (

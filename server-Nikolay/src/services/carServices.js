@@ -27,3 +27,15 @@ exports.updateCarViews = async (id) => {
 
   return updatedCar;
 };
+
+exports.addBuyerToCar = async (id, buyerDetails) => {
+  const car = await Car.findById(id).lean();
+
+  const updatedCar = await Car.findByIdAndUpdate(
+    id,
+    { buyers: car.buyers },
+    { new: true }
+  );
+
+  return updatedCar;
+};

@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { addViews, getCar } from "../services/carServices";
+import { addViews, getCar, buyCar } from "../services/carServices";
 import useUserHook from "../hooks/useUserHooks";
 import AuthContext from "../contexts/authContext";
+import useBuyHook from "../hooks/useBuyHook";
 
 function DetailsPage() {
   const [car, setCar] = useState({});
   const { id } = useParams();
   const { firstName, _id } = useContext(AuthContext);
-
   const [user, userID] = useUserHook("auth", []);
-
   const [isOwner, setIsOwner] = useState(false);
+
+  const { onBuyHandler } = useBuyHook(buyCar, id, { firstName, _id });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +20,6 @@ function DetailsPage() {
 
       addViews(id);
       setIsOwner(data.owner[0] === userID);
-
       setCar(data);
     };
 
@@ -27,10 +27,6 @@ function DetailsPage() {
       console.log(e);
     });
   }, []);
-
-  function onClickH() {
-    console.log(firstName, _id);
-  }
 
   return (
     <>
@@ -68,7 +64,7 @@ function DetailsPage() {
 
         {!isOwner && (
           <>
-            <Link onClick={onClickH}>
+            <Link onClick={onBuyHandler}>
               <a>BUY!</a>
             </Link>
           </>

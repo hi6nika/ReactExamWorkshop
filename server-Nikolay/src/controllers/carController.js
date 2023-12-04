@@ -40,7 +40,22 @@ CarController.put("/details/:id", async (req, res) => {
   try {
     const carData = await carServices.updateCarViews(id);
 
-    res.status(230).json(carData);
+    res.status(200).json(carData);
+  } catch (error) {
+    res.status(400).send(toErrText(error));
+  }
+});
+
+CarController.put("/buy/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const buyerData = req.body;
+
+  
+  try {
+    const carData = await carServices.addBuyerToCar(id ,buyerData);
+
+    res.status(200).json(carData);
   } catch (error) {
     res.status(400).send(toErrText(error));
   }

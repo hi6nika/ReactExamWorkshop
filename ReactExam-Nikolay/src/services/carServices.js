@@ -5,6 +5,7 @@ import { requests } from "../services/reqTemplate";
 const carEndpoints = {
   get: carURL + "/catalog",
   details: carURL + "/details",
+  buy: carURL + "/buy",
 };
 
 export const getCars = async () => {
@@ -21,4 +22,8 @@ export const getCar = async (id) => {
 
 export const addViews = async (id) => {
   return await requests.put(`${carEndpoints.details}/${id}`);
+};
+
+export const buyCar = async (id, details) => {
+  return await requests.put(`${carEndpoints.buy}/${id}`, details);
 };
