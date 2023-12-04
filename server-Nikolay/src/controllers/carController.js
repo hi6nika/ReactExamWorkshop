@@ -13,11 +13,9 @@ CarController.post("/catalog", async (req, res) => {
   }
 });
 
- 
 CarController.get("/getMyCars/:id", async (req, res) => {
-
   const { id } = req.params;
- 
+
   try {
     const carData = await carServices.getMyCars(id);
     res.status(200).json(carData);

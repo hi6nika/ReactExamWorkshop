@@ -35,6 +35,5 @@ export const deleteCar = async (id) => {
 };
 
 export const getMyCars = async (myID) => {
- 
   return await requests.get(`${carEndpoints.getMyCars}/${myID[0]}`);
 };

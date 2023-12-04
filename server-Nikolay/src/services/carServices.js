@@ -37,6 +37,8 @@ exports.updateCarViews = async (id) => {
 exports.addBuyerToCar = async (id, buyerDetails) => {
   const car = await Car.findById(id).lean();
 
+  car.buyers.push(buyerDetails);
+
   const updatedCar = await Car.findByIdAndUpdate(
     id,
     { buyers: car.buyers },
