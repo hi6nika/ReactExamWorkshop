@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { addViews, getCar, buyCar } from "../services/carServices";
+import { addViews, getCar, buyCar, deleteCar } from "../services/carServices";
 import useUserHook from "../hooks/useUserHooks";
 import AuthContext from "../contexts/authContext";
 import useBuyHook from "../hooks/useBuyHook";
+import useDeleteHook from "../hooks/useDeleteHook";
 
 function DetailsPage() {
   const [car, setCar] = useState({});
@@ -13,6 +14,8 @@ function DetailsPage() {
   const [isOwner, setIsOwner] = useState(false);
 
   const { onBuyHandler } = useBuyHook(buyCar, id, { firstName, _id });
+
+  const { onDeleteHandler } = useDeleteHook(deleteCar, id);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +61,10 @@ function DetailsPage() {
 
         {isOwner && (
           <>
-            <p>Views: {car.views}</p>
+            <p>Views: {car.views}</p>{" "}
+            <Link onClick={onDeleteHandler}>
+              <a className="DeleteBtn">Delete</a>
+            </Link>
           </>
         )}
 

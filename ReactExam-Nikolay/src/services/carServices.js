@@ -6,6 +6,7 @@ const carEndpoints = {
   get: carURL + "/catalog",
   details: carURL + "/details",
   buy: carURL + "/buy",
+  delete: carURL + "/delete",
 };
 
 export const getCars = async () => {
@@ -26,4 +27,8 @@ export const addViews = async (id) => {
 
 export const buyCar = async (id, details) => {
   return await requests.put(`${carEndpoints.buy}/${id}`, details);
+};
+
+export const deleteCar = async (id) => {
+  return await requests.delete(`${carEndpoints.delete}/${id}`);
 };

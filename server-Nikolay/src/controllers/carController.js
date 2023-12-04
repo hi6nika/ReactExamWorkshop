@@ -51,11 +51,22 @@ CarController.put("/buy/:id", async (req, res) => {
 
   const buyerData = req.body;
 
-  
   try {
-    const carData = await carServices.addBuyerToCar(id ,buyerData);
+    const carData = await carServices.addBuyerToCar(id, buyerData);
 
     res.status(200).json(carData);
+  } catch (error) {
+    res.status(400).send(toErrText(error));
+  }
+});
+
+CarController.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const carData = await carServices.deleteCar(id);
+
+    res.status(204).json(carData);
   } catch (error) {
     res.status(400).send(toErrText(error));
   }
