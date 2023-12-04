@@ -61,8 +61,8 @@ function Navigation() {
                 {isAuthenticated && (
                   <>
                     <li className="scroll">
-                      <Link>
-                        <a href="#new-cars">my cars</a>
+                      <Link to="/myCars">
+                        <a>my cars</a>
                       </Link>
                     </li>
 

@@ -12,6 +12,12 @@ exports.getAllCars = async (data) => {
   return car;
 };
 
+exports.getMyCars = async (data) => {
+  const car = await Car.find({ owner: data }).lean();
+
+  return car;
+};
+
 exports.getCar = async (id) => {
   const car = await Car.findById(id).lean();
 

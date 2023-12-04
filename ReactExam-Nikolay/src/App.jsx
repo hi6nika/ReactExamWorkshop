@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import AddCar from "./components/AddCar";
 import DetailsPage from "./components/DetailsPage";
 import Logout from "./components/Logout";
+import MyCars from "./components/MyCars";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/featured" element={<FeaturedCars />} />
           <Route path="/addCar" element={<AddCar />} />
+          <Route path="/myCars" element={<MyCars />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />

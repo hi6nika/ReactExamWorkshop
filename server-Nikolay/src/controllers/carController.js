@@ -13,6 +13,19 @@ CarController.post("/catalog", async (req, res) => {
   }
 });
 
+ 
+CarController.get("/getMyCars/:id", async (req, res) => {
+
+  const { id } = req.params;
+ 
+  try {
+    const carData = await carServices.getMyCars(id);
+    res.status(200).json(carData);
+  } catch (error) {
+    res.status(400).send(toErrText(error));
+  }
+});
+
 CarController.get("/catalog", async (req, res) => {
   try {
     const carData = await carServices.getAllCars();
