@@ -40,14 +40,6 @@ function DetailsPage() {
             <img src={car.imgUrl} />
           </div>
 
-          <div className="buyersList">
-            <ul>
-              <li>Gosho</li>
-              <li>Mitio</li>
-              <li>Stamat</li>
-            </ul>
-          </div>
-
           <div className="featured-model-info">
             <p>
               year: {car.year}
@@ -91,6 +83,22 @@ function DetailsPage() {
             </Link>
           </>
         )}
+      </div>
+
+      <div>
+        <div className="buyersList">
+          <h2>Buyer list</h2>
+
+          <ul>
+            {!car.buyers?.length > 0 ? (
+              <>
+                <li>No Buyers!</li>
+              </>
+            ) : (
+              car.buyers?.map((x) => <li key={x._id}>{x.firstName}</li>)
+            )}
+          </ul>
+        </div>
       </div>
     </>
   );
