@@ -58,7 +58,7 @@ CarController.put("/details/:id", async (req, res) => {
   }
 });
 
-CarController.put("/buy/:id",isAuthenticated, async (req, res) => {
+CarController.put("/buy/:id", isAuthenticated, async (req, res) => {
   const { id } = req.params;
 
   const buyerData = req.body;
@@ -72,7 +72,7 @@ CarController.put("/buy/:id",isAuthenticated, async (req, res) => {
   }
 });
 
-CarController.delete("/delete/:id",isAuthenticated, async (req, res) => {
+CarController.delete("/delete/:id", isAuthenticated, async (req, res) => {
   const { id } = req.params;
 
   try {
