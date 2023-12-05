@@ -10,6 +10,11 @@ const reqTemplate = async (method, URL, data) => {
     options.body = JSON.stringify(data);
   }
 
+  const AUTH = JSON.parse(localStorage.getItem("auth"));
+  if (AUTH !== null && Object.keys(AUTH).length > 0) {
+    options.headers["X-Authorization"] = AUTH.token;
+  }
+
   const res = await fetch(BaseUrL + URL, options);
   const result = await res.json();
 

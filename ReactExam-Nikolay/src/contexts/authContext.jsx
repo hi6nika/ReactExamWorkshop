@@ -36,7 +36,9 @@ export const AuthProvider = ({ children }) => {
     loginSubmitHandler,
     isAuthenticated: !!auth.token,
     firstName: auth.firstName,
-    token: auth.token,_id : auth._id
+    token: auth.token,
+    _id: auth._id,
+    userData: auth.user,
   };
 
   return (

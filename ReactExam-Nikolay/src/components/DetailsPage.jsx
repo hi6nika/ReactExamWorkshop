@@ -9,7 +9,7 @@ import useDeleteHook from "../hooks/useDeleteHook";
 function DetailsPage() {
   const [car, setCar] = useState({});
   const { id } = useParams();
-  const { firstName, _id } = useContext(AuthContext);
+  const { firstName, _id, userData } = useContext(AuthContext);
   const [user, userID] = useUserHook("auth", []);
   const [isOwner, setIsOwner] = useState(false);
 

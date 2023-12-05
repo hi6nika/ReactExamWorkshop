@@ -1,9 +1,10 @@
 const CarController = require("express").Router();
 
+const { isAuthenticated } = require("../middleware/isAuthenticated");
 const carServices = require("../services/carServices");
 const toErrText = require("../util/toErrText");
 
-CarController.post("/catalog", async (req, res) => {
+CarController.post("/catalog", isAuthenticated, async (req, res) => {
   const data = req.body;
   try {
     const carData = await carServices.addCar({ ...data });
@@ -57,7 +58,7 @@ CarController.put("/details/:id", async (req, res) => {
   }
 });
 
-CarController.put("/buy/:id", async (req, res) => {
+CarController.put("/buy/:id",isAuthenticated, async (req, res) => {
   const { id } = req.params;
 
   const buyerData = req.body;
@@ -71,7 +72,7 @@ CarController.put("/buy/:id", async (req, res) => {
   }
 });
 
-CarController.delete("/delete/:id", async (req, res) => {
+CarController.delete("/delete/:id",isAuthenticated, async (req, res) => {
   const { id } = req.params;
 
   try {
