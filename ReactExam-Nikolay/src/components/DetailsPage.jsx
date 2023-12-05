@@ -7,9 +7,10 @@ import useBuyHook from "../hooks/useBuyHook";
 import useDeleteHook from "../hooks/useDeleteHook";
 
 function DetailsPage() {
+  const navigateTo = useNavigate();
   const [car, setCar] = useState({});
   const { id } = useParams();
-  const { firstName, _id, userData } = useContext(AuthContext);
+  const { firstName, _id, isAuthenticated } = useContext(AuthContext);
   const [user, userID] = useUserHook("auth", []);
   const [isOwner, setIsOwner] = useState(false);
 
@@ -39,6 +40,14 @@ function DetailsPage() {
             <img src={car.imgUrl} />
           </div>
 
+          <div className="buyersList">
+            <ul>
+              <li>Gosho</li>
+              <li>Mitio</li>
+              <li>Stamat</li>
+            </ul>
+          </div>
+
           <div className="featured-model-info">
             <p>
               year: {car.year}
@@ -49,6 +58,7 @@ function DetailsPage() {
             </p>
           </div>
         </div>
+
         <div className="featured-cars-txt">
           <h2>
             <a>
@@ -59,19 +69,25 @@ function DetailsPage() {
           <p>description : {car.description} </p>
         </div>
 
-        {isOwner && (
+        {!isOwner ? (
+          isAuthenticated ? (
+            <>
+              <Link onClick={onBuyHandler}>
+                <a>BUY!</a>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to={"/register"}>
+                <a>BUY!</a>
+              </Link>
+            </>
+          )
+        ) : (
           <>
             <p>Views: {car.views}</p>{" "}
             <Link onClick={onDeleteHandler}>
               <a className="DeleteBtn">Delete</a>
-            </Link>
-          </>
-        )}
-
-        {!isOwner && (
-          <>
-            <Link onClick={onBuyHandler}>
-              <a>BUY!</a>
             </Link>
           </>
         )}
