@@ -49,7 +49,7 @@ exports.addBuyerToCar = async (id, buyerDetails) => {
 };
 
 exports.deleteCar = async (id) => {
-  const car = await Car.findByIdAndDelete(id);
+  const car = await Car.findByIdAndDelete(id).lean();
 
   return car;
 };

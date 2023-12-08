@@ -1,12 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import {
-  addViews,
-  getCar,
-  buyCar,
-  deleteCar,
- 
-} from "../services/carServices";
+import { addViews, getCar, buyCar, deleteCar } from "../services/carServices";
 import useUserHook from "../hooks/useUserHooks";
 import AuthContext from "../contexts/authContext";
 import useBuyHook from "../hooks/useBuyHook";
@@ -17,7 +11,9 @@ function DetailsPage() {
   const [car, setCar] = useState({});
   const { id } = useParams();
   const { firstName, _id, isAuthenticated } = useContext(AuthContext);
+
   const [user, userID] = useUserHook("auth", []);
+
   const [isOwner, setIsOwner] = useState(false);
 
   const { onBuyHandler } = useBuyHook(buyCar, id, { firstName, _id });
@@ -29,7 +25,8 @@ function DetailsPage() {
       const data = await getCar(id);
 
       addViews(id);
-      setIsOwner(data.owner[0] === userID);
+      setIsOwner(data?.owner[0] === userID);
+
       setCar(data);
     };
 

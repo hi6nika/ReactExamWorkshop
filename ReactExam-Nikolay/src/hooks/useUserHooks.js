@@ -7,7 +7,7 @@ export default function useUserHook(key, defaultValue) {
 
     if (data) {
       const raw = JSON.parse(data);
-      const output = [raw.user._id, raw.user.firstName];
+      const output = [raw.user?._id, raw.user?.firstName];
       return output;
     }
 

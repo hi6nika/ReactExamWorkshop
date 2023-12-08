@@ -25,28 +25,39 @@ function MyCars() {
   return (
     <section id="featured-cars" className="featured-cars">
       <div className="container">
-        <div className="section-header">
-          <p>
-            checkout <span>the</span> featured cars
-          </p>
-          <h2>featured cars</h2>
-        </div>
-        {/*/.section-header*/}
+        {cars.length === 0 ? (
+          <></>
+        ) : (
+          <>
+            <div className="section-header">
+              <h2>My Cars</h2>
+            </div>
+          </>
+        )}
+
         <div className="featured-cars-content">
-          {cars.map((cars, i) => {
-            return (
-              //wrong
-              <div key={i} className="row">
+          {cars.length === 0 ? (
+            <>
+              <div className="section-header">
                 {" "}
-                {cars.map((car) => {
-                  return <FeaturedCarCard key={car._id} {...car} />;
-                })}
+                <h2>You have no cars!</h2>
               </div>
-            );
-          })}
+            </>
+          ) : (
+            cars.map((cars, i) => {
+              return (
+                // ne e validen key//
+                <div key={i} className="row">
+                  {" "}
+                  {cars.map((car) => {
+                    return <FeaturedCarCard key={car._id} {...car} />;
+                  })}
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
-      {/*/.container*/}
     </section>
   );
 }

@@ -32,7 +32,10 @@ export const buyCar = async (id, details) => {
 };
 
 export const deleteCar = async (id) => {
-  return await requests.delete(`${carEndpoints.delete}/${id}`);
+
+  const req = await requests.delete(`${carEndpoints.delete}/${id}`);
+ 
+  return req
 };
 
 export const getMyCars = async (myID) => {
