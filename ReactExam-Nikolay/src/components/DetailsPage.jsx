@@ -1,6 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { addViews, getCar, buyCar, deleteCar } from "../services/carServices";
+import {
+  addViews,
+  getCar,
+  buyCar,
+  deleteCar,
+ 
+} from "../services/carServices";
 import useUserHook from "../hooks/useUserHooks";
 import AuthContext from "../contexts/authContext";
 import useBuyHook from "../hooks/useBuyHook";
@@ -80,6 +86,9 @@ function DetailsPage() {
             <p>Views: {car.views}</p>{" "}
             <Link onClick={onDeleteHandler}>
               <a className="DeleteBtn">Delete</a>
+            </Link>
+            <Link to={`/edit/${id}`}>
+              <a className="EditButton">Edit</a>
             </Link>
           </>
         )}

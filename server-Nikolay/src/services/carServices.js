@@ -53,3 +53,8 @@ exports.deleteCar = async (id) => {
 
   return car;
 };
+
+exports.editCar = async (id, data) => {
+  const car = await Car.findByIdAndUpdate(id, data);
+  return car;
+};

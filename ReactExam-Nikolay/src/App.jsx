@@ -13,6 +13,7 @@ import AddCar from "./components/AddCar";
 import DetailsPage from "./components/DetailsPage";
 import Logout from "./components/Logout";
 import MyCars from "./components/MyCars";
+import EditCarPage from "./components/EditCarPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/details/:id" element={<DetailsPage />} />
+          <Route path="/edit/:id" element={<EditCarPage />} />
         </Routes>
       </AuthProvider>
     </>

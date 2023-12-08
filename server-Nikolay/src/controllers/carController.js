@@ -84,4 +84,30 @@ CarController.delete("/delete/:id", isAuthenticated, async (req, res) => {
   }
 });
 
+CarController.get("/edit/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const carData = await carServices.getCar(id);
+
+    res.status(200).json(carData);
+  } catch (error) {
+    res.status(400).send(toErrText(error));
+  }
+});
+
+CarController.put("/edit/:id", isAuthenticated, async (req, res) => {
+  const { id } = req.params;
+
+  const newData = req.body;
+
+  try {
+    const carData = await carServices.editCar(id, newData);
+
+    res.status(200).json(carData);
+  } catch (error) {
+    res.status(400).send(toErrText(error));
+  }
+});
+
 module.exports = CarController;
