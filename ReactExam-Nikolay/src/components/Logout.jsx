@@ -1,16 +1,25 @@
-import { useEffect } from "react";
-import { logout } from "../services/userServices";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
+
+import AuthContext from "../contexts/authContext";
 
 function Logout() {
-  const navigateTo = useNavigate();
+  const { logoutEventHandler } = useContext(AuthContext);
+
+  const { token } = useParams();
+
   useEffect(() => {
-    if (logout()) {
-      navigateTo("/");
-    }
+    const delSession = async () => {
+      await logoutEventHandler(token);
+    };
+
+    delSession().catch((e) => {
+      console.log(e);
+    });
   }, []);
 
-  return <></>;
+  return;
 }
 
 export default Logout;

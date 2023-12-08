@@ -16,8 +16,8 @@ export const login = async (data) => {
   return await requests.post(userEndpoints.login, data);
 };
 
-export const logout = () => {
-  localStorage.clear();
+export const logout = async () => {
+  const req = await requests.post(userEndpoints.logout);
 
-  return true;
+  return req.auth;
 };

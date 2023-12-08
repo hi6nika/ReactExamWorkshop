@@ -1,4 +1,5 @@
 const userController = require("express").Router();
+const { isAuthenticated } = require("../middleware/isAuthenticated");
 const userServices = require("../services/userServices");
 const toErrText = require("../util/toErrText");
 
@@ -19,6 +20,15 @@ userController.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const userData = await userServices.login(email, password);
     res.status(200).json(userData);
+  } catch (error) {
+    res.status(403).send(toErrText(error));
+  }
+});
+
+userController.post("/logout", isAuthenticated, async (req, res) => {
+  
+  try {
+    res.status(202).json({auth : false})
   } catch (error) {
     res.status(403).send(toErrText(error));
   }

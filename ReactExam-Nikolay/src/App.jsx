@@ -28,7 +28,7 @@ function App() {
           <Route path="/myCars" element={<MyCars />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
+          <Route path="/logout/:token" element={<Logout />} />
           <Route path="/details/:id" element={<DetailsPage />} />
           <Route path="/edit/:id" element={<EditCarPage />} />
         </Routes>

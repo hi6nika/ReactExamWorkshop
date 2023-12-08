@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { login, register } from "../services/userServices";
+import { login, register, logout } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
 import usePersistedState from "../hooks/usePersistedState";
 
@@ -31,9 +31,21 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  async function logoutEventHandler(token) {
+    try {
+      const res = await logout(token);
+      setAuth(!res);
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const values = {
     registerEventHandler,
     loginSubmitHandler,
+    logoutEventHandler,
     isAuthenticated: !!auth.token,
     firstName: auth.firstName,
     token: auth.token,

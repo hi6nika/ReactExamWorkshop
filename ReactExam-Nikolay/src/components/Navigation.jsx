@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import AuthContext from "../contexts/authContext";
 
 function Navigation() {
@@ -73,7 +73,7 @@ function Navigation() {
                     </li>
 
                     <li className="scroll">
-                      <Link to="/logout">
+                      <Link to={`/logout/${token}`}>
                         <a>logout</a>
                       </Link>
                     </li>
