@@ -543,10 +543,14 @@ nav.navbar.bootsnav .navbar-toggle i {
         7. Featured-cars
 --------------------------------------*/
 .featured-cars {
-  padding: 112px 0 120px;
+  padding: 500px 0 120px;
 }
 .featured-cars-content {
-  padding-top: 96px;
+  padding-top: 55px;
+}
+
+.featured-cars-my {
+  padding: 100px 0 120px;
 }
 
 /*.single-featured-cars*/
@@ -940,4 +944,12 @@ nav.navbar.bootsnav .navbar-toggle i {
 
 .buyersList ul li {
   display: block;
+}
+
+.addCarForm {
+  padding: 0 30px;
+  position: relative;
+  top: 150px;
+
+  border: 1px solid #f8f8f8;
 }

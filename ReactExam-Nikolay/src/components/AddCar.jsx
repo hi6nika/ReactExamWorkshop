@@ -45,7 +45,7 @@ function AddCar() {
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <form onSubmit={onSubmit}>
+      <form className="addCarForm" onSubmit={onSubmit}>
         <div className="container">
           <h1>Add a car</h1>
 

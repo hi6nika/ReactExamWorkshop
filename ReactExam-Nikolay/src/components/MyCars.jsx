@@ -23,7 +23,7 @@ function MyCars() {
   }, []);
 
   return (
-    <section id="featured-cars" className="featured-cars">
+    <section id="featured-cars" className="featured-cars-my">
       <div className="container">
         {cars.length === 0 ? (
           <></>
