@@ -37,15 +37,24 @@ exports.updateCarViews = async (id) => {
 exports.addBuyerToCar = async (id, buyerDetails) => {
   const car = await Car.findById(id).lean();
 
-  car.buyers.push(buyerDetails);
+  const alreadyBought = [];
 
-  const updatedCar = await Car.findByIdAndUpdate(
-    id,
-    { buyers: car.buyers },
-    { new: true }
-  );
+  for ([key, values] of Object.entries(car.buyers)) {
+    alreadyBought.push(values._id);
+  }
 
-  return updatedCar;
+  if (!alreadyBought.includes(buyerDetails._id)) {
+    car.buyers.push(buyerDetails);
+    const updatedCar = await Car.findByIdAndUpdate(
+      id,
+      { buyers: car.buyers },
+      { new: true }
+    );
+
+    return updatedCar;
+  } else {
+    throw new Error("user already bought the car!");
+  }
 };
 
 exports.deleteCar = async (id) => {
