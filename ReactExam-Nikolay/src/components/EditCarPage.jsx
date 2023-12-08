@@ -4,38 +4,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import { editCar, getCar } from "../services/carServices";
 import useEditForm from "../hooks/useEditFormHook";
 
-async function populateData(id) {
-  const car = await getCar(id);
-
-  const output = {
-    imgUrl: car.imgUrl,
-    make: car.make,
-    model: car.model,
-    condition: car.condition,
-    year: car.year,
-    body: car.body,
-    price: car.price,
-    horsePower: car.horsePower,
-    milage: car.milage,
-    description: car.description,
-  };
-
-  return output;
-}
-
 function EditCarPage() {
   const navigateTo = useNavigate();
   const { id } = useParams();
   const [initialValues, setInitialValues] = useState({});
 
   useEffect(() => {
-    async function makeCall() {
-      const data = await populateData(id);
-
+    async function fetchData() {
+      const data = await getCar(id);
       setInitialValues(data);
     }
 
-    makeCall();
+    fetchData().catch((e) => {
+      console.log(e);
+    });
   }, []);
 
   const { values, onChange, onSubmit } = useEditForm(
@@ -43,9 +25,9 @@ function EditCarPage() {
     initialValues
   );
 
-  async function onEditHandler(valuee) {
+  async function onEditHandler(value) {
     try {
-      const res = await editCar(id, valuee);
+      const res = await editCar(id, value);
       if (res) {
         navigateTo("/myCars");
       }
@@ -60,9 +42,7 @@ function EditCarPage() {
       <form onSubmit={onSubmit}>
         <div className="container">
           <h1>Add a car</h1>
-
           <hr />
-
           <label htmlFor="imgUrl">
             <b>Image Url</b>
           </label>
