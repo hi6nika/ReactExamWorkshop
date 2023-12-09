@@ -3,13 +3,22 @@ import FeaturedCarCard from "./FeaturedCarCard";
 
 import { getCars } from "../services/carServices";
 import formatData from "../utils/formatData";
+import { useParams } from "react-router-dom";
 
 function FeaturedCars() {
   const [cars, setCars] = useState([]);
 
+  const { params } = useParams();
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getCars();
+      let data = [];
+
+      if (!params) {
+        data = await getCars();
+      } else {
+        data = await getCars(params);
+      }
 
       setCars(formatData(data));
     };
@@ -30,7 +39,7 @@ function FeaturedCars() {
         </div>
         {/*/.section-header*/}
         <div className="featured-cars-content">
-          {cars.map((cars ,i) => {
+          {cars.map((cars, i) => {
             return (
               //wrong
               <div key={i} className="row">

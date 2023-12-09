@@ -31,6 +31,7 @@ function App() {
           <Route path="/logout/:token" element={<Logout />} />
           <Route path="/details/:id" element={<DetailsPage />} />
           <Route path="/edit/:id" element={<EditCarPage />} />
+          <Route path="/search/:params" element={<FeaturedCars />} />
         </Routes>
       </AuthProvider>
     </>

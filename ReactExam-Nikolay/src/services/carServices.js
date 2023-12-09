@@ -11,8 +11,13 @@ const carEndpoints = {
   getMyCars: carURL + "/getMyCars",
 };
 
-export const getCars = async () => {
-  return await requests.get(carEndpoints.get);
+export const getCars = async (data) => {
+  
+
+  if (!data) {
+    return await requests.get(carEndpoints.get);
+  }
+  return await requests.get(carEndpoints.get + "/" + data);
 };
 
 export const addCar = async (data) => {
@@ -32,10 +37,9 @@ export const buyCar = async (id, details) => {
 };
 
 export const deleteCar = async (id) => {
-
   const req = await requests.delete(`${carEndpoints.delete}/${id}`);
- 
-  return req
+
+  return req;
 };
 
 export const getMyCars = async (myID) => {

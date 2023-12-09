@@ -3,8 +3,10 @@ import { getCars } from "../services/carServices";
 import setSearchOptions from "../utils/setSearchOptions";
 import useForm from "../hooks/useFormHook";
 import useSelectForm from "../hooks/useSelectForm";
+import { useNavigate } from "react-router-dom";
 
 function SearchBox() {
+  const navigateTo = useNavigate();
   const [cars, setCars] = useState([]);
 
   const [options, setOptions] = useState([]);
@@ -26,7 +28,8 @@ function SearchBox() {
   function submitEventHandler(e) {
     e.preventDefault();
 
-    console.log(value);
+    navigateTo("/search/" + JSON.stringify(value));
+ 
   }
 
   useEffect(() => {
@@ -94,12 +97,12 @@ function SearchBox() {
               <h2>select year</h2>
               <div className="model-select-icon">
                 <select
-                    onChange={(event) =>
-                      setValue((state) => ({
-                        ...state,
-                        year: event.target.value,
-                      }))
-                    }
+                  onChange={(event) =>
+                    setValue((state) => ({
+                      ...state,
+                      year: event.target.value,
+                    }))
+                  }
                   className="form-control"
                 >
                   <option value="default">year</option>
@@ -118,7 +121,7 @@ function SearchBox() {
               <h2>body style</h2>
               <div className="model-select-icon">
                 <select
-                   onChange={(event) =>
+                  onChange={(event) =>
                     setValue((state) => ({
                       ...state,
                       body: event.target.value,
@@ -168,12 +171,12 @@ function SearchBox() {
               <h2>car condition</h2>
               <div className="model-select-icon">
                 <select
-                      onChange={(event) =>
-                        setValue((state) => ({
-                          ...state,
-                          condition: event.target.value,
-                        }))
-                      }
+                  onChange={(event) =>
+                    setValue((state) => ({
+                      ...state,
+                      condition: event.target.value,
+                    }))
+                  }
                   className="form-control"
                 >
                   <option value="default">condition</option>

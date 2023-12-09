@@ -34,6 +34,21 @@ CarController.get("/catalog", async (req, res) => {
   }
 });
 
+CarController.get("/catalog/:params", async (req, res) => {
+
+  const { params } = req.params;
+
+  console.log(params)
+
+  try {
+    const carData = await carServices.getAllCars(params);
+    res.status(200).json(carData);
+  } catch (error) {
+    res.status(400).json(toErrText(error));
+  }
+});
+
+
 CarController.get("/details/:id", async (req, res) => {
   const { id } = req.params;
 

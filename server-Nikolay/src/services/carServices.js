@@ -7,9 +7,14 @@ exports.addCar = async (data) => {
 };
 
 exports.getAllCars = async (data) => {
-  const car = await Car.find().lean();
 
-  return car;
+  console.log(data)
+
+  if (!data) {
+    return await Car.find().lean();
+  } else {
+    return await Car.find(JSON.parse(data)).lean();
+  }
 };
 
 exports.getMyCars = async (data) => {
