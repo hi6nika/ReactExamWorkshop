@@ -1,126 +1,239 @@
+import { useEffect, useState } from "react";
+import { getCars } from "../services/carServices";
+import setSearchOptions from "../utils/setSearchOptions";
+import useForm from "../hooks/useFormHook";
+import useSelectForm from "../hooks/useSelectForm";
+
 function SearchBox() {
+  const [cars, setCars] = useState([]);
+
+  const [options, setOptions] = useState([]);
+
+  const [YearOptions, setYearOptions] = useState([]);
+
+  const [MakeOptions, setMakeOptions] = useState([]);
+
+  const [ModelOptions, setModelOptions] = useState([]);
+
+  const [BodyOptions, setBodyOptions] = useState([]);
+
+  const [ConditionOptions, setConditionOptions] = useState([]);
+
+  const [PriceOptions, setPriceOptions] = useState([]);
+
+  const [value, setValue] = useState({});
+
+  function submitEventHandler(e) {
+    e.preventDefault();
+
+    console.log(value);
+  }
+
+  useEffect(() => {
+    //
+
+    const populate = async () => {
+      setCars(await getCars());
+    };
+
+    populate().catch((e) => {
+      console.log(e);
+    });
+  }, []);
+
+  useEffect(() => {
+    const addOptions = async () => {
+      setOptions(setSearchOptions(cars));
+    };
+
+    addOptions().catch((e) => {
+      console.log(e);
+    });
+  }, [cars]);
+
+  useEffect(() => {
+    const populateOptions = async () => {
+      for (const [keys, values] of Object.entries(options)) {
+        if (keys === "year") {
+          setYearOptions(values);
+        }
+
+        if (keys === "make") {
+          setMakeOptions(values);
+        }
+
+        if (keys === "model") {
+          setModelOptions(values);
+        }
+
+        if (keys === "body") {
+          setBodyOptions(values);
+        }
+
+        if (keys === "condition") {
+          setConditionOptions(values);
+        }
+
+        if (keys === "price") {
+          setPriceOptions(values);
+        }
+      }
+    };
+
+    populateOptions().catch((e) => {
+      console.log(e);
+    });
+  }, [options]);
+
   return (
     <div className="model-search-content">
-      <div className="row">
-        <div className="col-md-offset-1 col-md-2 col-sm-12">
-          <div className="single-model-search">
-            <h2>select year</h2>
-            <div className="model-select-icon">
-              <select className="form-control">
-                <option value="default">year</option>
-                {/* /.option*/}
-                <option value={2018}>2018</option>
-                {/* /.option*/}
-                <option value={2017}>2017</option>
-                {/* /.option*/}
-                <option value={2016}>2016</option>
-                {/* /.option*/}
-              </select>
-              {/* /.select*/}
+      <form onSubmit={submitEventHandler}>
+        <div className="row">
+          <div className="col-md-offset-1 col-md-2 col-sm-12">
+            <div className="single-model-search">
+              <h2>select year</h2>
+              <div className="model-select-icon">
+                <select
+                  onChange={(event) =>
+                    setValue((state) => [{ ...state }, event.target.value])
+                  }
+                  className="form-control"
+                >
+                  <option value="default">year</option>
+
+                  {YearOptions.map((x) => {
+                    return (
+                      <option key={x} value={x}>
+                        {x}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
             </div>
-            {/* /.model-select-icon */}
+            <div className="single-model-search">
+              <h2>body style</h2>
+              <div className="model-select-icon">
+                <select
+                  onChange={(event) =>
+                    setValue((state) => [state, event.target.value])
+                  }
+                  className="form-control"
+                >
+                  <option value="default">style</option>
+
+                  {BodyOptions.map((x) => {
+                    return (
+                      <option key={x} value={x}>
+                        {x}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
           </div>
-          <div className="single-model-search">
-            <h2>body style</h2>
-            <div className="model-select-icon">
-              <select className="form-control">
-                <option value="default">style</option>
-                {/* /.option*/}
-                <option value="sedan">sedan</option>
-                {/* /.option*/}
-                <option value="van">van</option>
-                {/* /.option*/}
-                <option value="roadster">roadster</option>
-                {/* /.option*/}
-              </select>
-              {/* /.select*/}
+          <div className="col-md-offset-1 col-md-2 col-sm-12">
+            <div className="single-model-search">
+              <h2>select make</h2>
+              <div className="model-select-icon">
+                <select
+                  onChange={(event) =>
+                    setValue((state) => [state, event.target.value])
+                  }
+                  className="form-control"
+                >
+                  <option value="default">make</option>
+
+                  {MakeOptions.map((x) => {
+                    return (
+                      <option key={x} value={x}>
+                        {x}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
             </div>
-            {/* /.model-select-icon */}
+            <div className="single-model-search">
+              <h2>car condition</h2>
+              <div className="model-select-icon">
+                <select
+                  onChange={(event) =>
+                    setValue((state) => [state, event.target.value])
+                  }
+                  className="form-control"
+                >
+                  <option value="default">condition</option>
+
+                  {ConditionOptions.map((x) => {
+                    return (
+                      <option key={x} value={x}>
+                        {x}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-offset-1 col-md-2 col-sm-12">
+            <div className="single-model-search">
+              <h2>select model</h2>
+              <div className="model-select-icon">
+                <select
+                  onChange={(event) =>
+                    setValue(
+                      (state) => (   { ...state ,  model: event.target.value })
+                    )
+                  }
+                  className="form-control"
+                >
+                  <option value="default">model</option>
+
+                  {ModelOptions.map((x) => {
+                    return (
+                      <option key={x} value={x}>
+                        {x}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
+            <div className="single-model-search">
+              <h2>select price</h2>
+              <div className="model-select-icon">
+                <select
+                  onChange={(event) =>
+                    setValue(
+                      (state) => (   { ...state ,  price: event.target.value })
+                    )
+                  }
+                  className="form-control"
+                >
+                  <option value="default">price</option>
+
+                  {PriceOptions.map((x) => {
+                    return (
+                      <option key={x} value={x}>
+                        {x}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-2 col-sm-12">
+            <div className="single-model-search text-center">
+              <button type="submit" className="welcome-btn model-search-btn">
+                search
+              </button>
+            </div>
           </div>
         </div>
-        <div className="col-md-offset-1 col-md-2 col-sm-12">
-          <div className="single-model-search">
-            <h2>select make</h2>
-            <div className="model-select-icon">
-              <select className="form-control">
-                <option value="default">make</option>
-                {/* /.option*/}
-                <option value="toyota">toyota</option>
-                {/* /.option*/}
-                <option value="holden">holden</option>
-                {/* /.option*/}
-                <option value="maecedes-benz">maecedes-benz.</option>
-                {/* /.option*/}
-              </select>
-              {/* /.select*/}
-            </div>
-            {/* /.model-select-icon */}
-          </div>
-          <div className="single-model-search">
-            <h2>car condition</h2>
-            <div className="model-select-icon">
-              <select className="form-control">
-                <option value="default">condition</option>
-                {/* /.option*/}
-                <option value="something">something</option>
-                {/* /.option*/}
-                <option value="something">something</option>
-                {/* /.option*/}
-                <option value="something">something</option>
-                {/* /.option*/}
-              </select>
-              {/* /.select*/}
-            </div>
-            {/* /.model-select-icon */}
-          </div>
-        </div>
-        <div className="col-md-offset-1 col-md-2 col-sm-12">
-          <div className="single-model-search">
-            <h2>select model</h2>
-            <div className="model-select-icon">
-              <select className="form-control">
-                <option value="default">model</option>
-                {/* /.option*/}
-                <option value="kia-rio">kia-rio</option>
-                {/* /.option*/}
-                <option value="mitsubishi">mitsubishi</option>
-                {/* /.option*/}
-                <option value="ford">ford</option>
-                {/* /.option*/}
-              </select>
-              {/* /.select*/}
-            </div>
-            {/* /.model-select-icon */}
-          </div>
-          <div className="single-model-search">
-            <h2>select price</h2>
-            <div className="model-select-icon">
-              <select className="form-control">
-                <option value="default">price</option>
-                {/* /.option*/}
-                <option value="$0.00">$0.00</option>
-                {/* /.option*/}
-                <option value="$0.00">$0.00</option>
-                {/* /.option*/}
-                <option value="$0.00">$0.00</option>
-                {/* /.option*/}
-              </select>
-              {/* /.select*/}
-            </div>
-            {/* /.model-select-icon */}
-          </div>
-        </div>
-        <div className="col-md-2 col-sm-12">
-          <div className="single-model-search text-center">
-            <button
-              className="welcome-btn model-search-btn"
-              // onClick="window.location.href='#'"
-            >
-              search
-            </button>
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
   );
 }
