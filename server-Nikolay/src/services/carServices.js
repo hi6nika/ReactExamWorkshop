@@ -7,9 +7,6 @@ exports.addCar = async (data) => {
 };
 
 exports.getAllCars = async (data) => {
-
-  console.log(data)
-
   if (!data) {
     return await Car.find().lean();
   } else {
