@@ -94,9 +94,12 @@ function SearchBox() {
               <h2>select year</h2>
               <div className="model-select-icon">
                 <select
-                  onChange={(event) =>
-                    setValue((state) => [{ ...state }, event.target.value])
-                  }
+                    onChange={(event) =>
+                      setValue((state) => ({
+                        ...state,
+                        year: event.target.value,
+                      }))
+                    }
                   className="form-control"
                 >
                   <option value="default">year</option>
@@ -115,8 +118,11 @@ function SearchBox() {
               <h2>body style</h2>
               <div className="model-select-icon">
                 <select
-                  onChange={(event) =>
-                    setValue((state) => [state, event.target.value])
+                   onChange={(event) =>
+                    setValue((state) => ({
+                      ...state,
+                      body: event.target.value,
+                    }))
                   }
                   className="form-control"
                 >
@@ -139,7 +145,10 @@ function SearchBox() {
               <div className="model-select-icon">
                 <select
                   onChange={(event) =>
-                    setValue((state) => [state, event.target.value])
+                    setValue((state) => ({
+                      ...state,
+                      make: event.target.value,
+                    }))
                   }
                   className="form-control"
                 >
@@ -159,9 +168,12 @@ function SearchBox() {
               <h2>car condition</h2>
               <div className="model-select-icon">
                 <select
-                  onChange={(event) =>
-                    setValue((state) => [state, event.target.value])
-                  }
+                      onChange={(event) =>
+                        setValue((state) => ({
+                          ...state,
+                          condition: event.target.value,
+                        }))
+                      }
                   className="form-control"
                 >
                   <option value="default">condition</option>
@@ -183,9 +195,10 @@ function SearchBox() {
               <div className="model-select-icon">
                 <select
                   onChange={(event) =>
-                    setValue(
-                      (state) => (   { ...state ,  model: event.target.value })
-                    )
+                    setValue((state) => ({
+                      ...state,
+                      model: event.target.value,
+                    }))
                   }
                   className="form-control"
                 >
@@ -206,9 +219,10 @@ function SearchBox() {
               <div className="model-select-icon">
                 <select
                   onChange={(event) =>
-                    setValue(
-                      (state) => (   { ...state ,  price: event.target.value })
-                    )
+                    setValue((state) => ({
+                      ...state,
+                      price: event.target.value,
+                    }))
                   }
                   className="form-control"
                 >
