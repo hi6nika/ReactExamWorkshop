@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+ 
 import { editCar, getCar } from "../services/carServices";
 import useEditForm from "../hooks/useEditFormHook";
 
@@ -39,9 +39,9 @@ function EditCarPage() {
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <form onSubmit={onSubmit}>
+      <form className="addCarForm" onSubmit={onSubmit}>
         <div className="container">
-          <h1>Add a car</h1>
+          <h1>Edit a car</h1>
           <hr />
           <label htmlFor="imgUrl">
             <b>Image Url</b>
@@ -91,18 +91,6 @@ function EditCarPage() {
             id="condition"
           />
 
-          <label htmlFor="year">
-            <b>Year</b>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Year"
-            name="year"
-            value={values.year}
-            onChange={onChange}
-            id="year"
-          />
-
           <label htmlFor="body">
             <b>Body</b>
           </label>
@@ -113,6 +101,18 @@ function EditCarPage() {
             value={values.body}
             onChange={onChange}
             id="body"
+          />
+
+          <label htmlFor="year">
+            <b>Year</b>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Year"
+            name="year"
+            value={values.year}
+            onChange={onChange}
+            id="year"
           />
 
           <label htmlFor="price">

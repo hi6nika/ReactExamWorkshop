@@ -5,7 +5,8 @@ import useUserHook from "../hooks/useUserHooks";
 import AuthContext from "../contexts/authContext";
 import useBuyHook from "../hooks/useBuyHook";
 import useDeleteHook from "../hooks/useDeleteHook";
-
+import boughtOrNot from "../utils/boughtOrNot";
+ 
 function DetailsPage() {
   const navigateTo = useNavigate();
   const [car, setCar] = useState({});
@@ -15,6 +16,8 @@ function DetailsPage() {
   const [user, userID] = useUserHook("auth", []);
 
   const [isOwner, setIsOwner] = useState(false);
+
+  const [isAlreadyBought, setIsAlreadyBought] = useState(false);
 
   const { onBuyHandler } = useBuyHook(buyCar, id, { firstName, _id });
 
@@ -26,6 +29,8 @@ function DetailsPage() {
 
       addViews(id);
       setIsOwner(data?.owner[0] === userID);
+
+     setIsAlreadyBought(boughtOrNot(data.buyers, userID));
 
       setCar(data);
     };
@@ -66,11 +71,19 @@ function DetailsPage() {
 
         {!isOwner ? (
           isAuthenticated ? (
-            <>
-              <Link onClick={onBuyHandler}>
-                <a>BUY!</a>
-              </Link>
-            </>
+            isAlreadyBought ? (
+              <>
+                <Link onClick={onBuyHandler} >
+                  <a   onClick = {() => {
+                    setIsAlreadyBought(false)
+                  }} >BUY!</a>
+                </Link>
+              </>
+            ) : (
+              <>
+                <p>Already Bought!</p>
+              </>
+            )
           ) : (
             <>
               <Link to={"/register"}>

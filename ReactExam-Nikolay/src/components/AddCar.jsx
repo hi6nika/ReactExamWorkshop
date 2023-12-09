@@ -99,18 +99,6 @@ function AddCar() {
             id="condition"
           />
 
-          <label htmlFor="year">
-            <b>Year</b>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Year"
-            name="year"
-            value={values.year}
-            onChange={onChange}
-            id="year"
-          />
-
           <label htmlFor="body">
             <b>Body</b>
           </label>
@@ -121,6 +109,18 @@ function AddCar() {
             value={values.body}
             onChange={onChange}
             id="body"
+          />
+
+          <label htmlFor="year">
+            <b>Year</b>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Year"
+            name="year"
+            value={values.year}
+            onChange={onChange}
+            id="year"
           />
 
           <label htmlFor="price">
